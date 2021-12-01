@@ -1,6 +1,33 @@
-FROM golang:latest@sha256:db260e19d31a9c6794d35aae1bf2cd30f1b4db88c3094a18299c10ed02eb4dee
-RUN mkdir -p /go/src/github.com/joshhsoj1902/parse-env
-ADD . /go/src/github.com/joshhsoj1902/parse-env/
-WORKDIR /go/src/github.com/joshhsoj1902/parse-env
+FROM --platform=${BUILDPLATFORM} golang:1.15.2-alpine AS base
+WORKDIR /src
+ENV CGO_ENABLED=0
+COPY . .
 
-CMD ["/go/src/github.com/joshhsoj1902/parse-env/main"]
+# build section
+FROM base AS build
+ARG TARGETOS
+ARG TARGETARCH
+RUN GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -o /out/serialize-env-json cmd/main/main.go
+
+
+
+# linter section
+FROM golangci/golangci-lint:v1.27-alpine AS lint-base
+
+FROM base AS lint
+COPY --from=lint-base /usr/bin/golangci-lint /usr/bin/golangci-lint
+RUN golangci-lint run --timeout 10m0s ./...
+
+
+
+# final section
+FROM scratch AS bin-unix
+COPY --from=build /out/serialize-env-json /
+
+FROM bin-unix AS bin-linux
+FROM bin-unix AS bin-darwin
+
+FROM scratch AS bin-windows
+COPY --from=build /out/serialize-env-json /serialize-env-json.exe
+
+FROM bin-${TARGETOS} as bin

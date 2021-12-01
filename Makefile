@@ -1,13 +1,12 @@
-build-docker:
-	docker build -f Dockerfile -t studioetrange/serialize-env-json .
+all: bin
 
-build:
-	go build -o main cmd/main/main.go
+PLATFORM=local
 
-run:
-	./main serialize-env-json --filter "^P(A)TH" --clean --lower
 
-start:
-	docker run studioetrange/parse-env
+.PHONY: bin
+bin:
+	@DOCKER_BUILDKIT=1 docker build . --target bin --output bin/ --platform ${PLATFORM}
 
-.PHONY: build
+.PHONY: lint
+lint:
+	@DOCKER_BUILDKIT=1 docker build . --target lint
