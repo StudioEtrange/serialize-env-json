@@ -25,10 +25,11 @@ jobs:
             run: make PLATFORM=darwin/amd64
           - name: rename darwin binary
             run: |
-              mv ./bin/serialize-env-json ./bin/serialize-env-json_darwin_amd64
+              mv ./bin/serialize-env-json /bin/serialize-env-json_win64.exe
           - name: Realase
             uses: softprops/action-gh-release@v1
-             with:
+            with:
               files: |
-                Release.txt
-                LICENSE
+                ./bin/serialize-env-json_linux_amd64
+                ./bin/serialize-env-json_win64.exe
+                ./bin/serialize-env-json_win64.exe
