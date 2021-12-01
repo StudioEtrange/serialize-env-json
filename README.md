@@ -63,5 +63,4 @@ DOCKER_BUILDKIT=1 docker build . --target bin --output bin/ --platform linux/amd
 # Notes
 
 * Project organisation with docker guide : https://www.docker.com/blog/containerize-your-go-developer-environment-part-1/
-    * pay attention to issue#7 https://github.com/chris-crone/containerized-go-dev/issues/7
 * Forked and modified from https://github.com/joshhsoj1902/parse-env
