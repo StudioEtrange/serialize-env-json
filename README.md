@@ -8,19 +8,39 @@ Parse environment variables and tweak and serialize them into JSON
 
 # Usage
 
-```
-serialize-env-json --help
+* Command
+    ```
+    serialize-env-json --help
 
-serialize-env-json [--filter <regexp>] [--clean] [--upper] [--lower]
-```
+    serialize-env-json [--filter <regexp>] [--clean] [--upper] [--lower]
+    ```
 
-return a json string with this json struct
+* Options
 
-```
-fullname : unmodified env var name
-name : resulting env var name
-value : env var value
-```
+    ```
+    --filter <regexp>
+        select env var with a regexp matching env var name (default ".*")
+    ```
+
+* Tweak env var name options
+
+    ```
+    --clean 
+            Remove from env var name all the matching regexp group
+    --lower
+            Force env var name to lower
+    --upper
+            Force env var name to upper
+    ```
+
+* JSON result file format
+
+    ```
+    fullname : unmodified env var name
+    name : resulting env var name
+    value : env var value
+    ```
+
 
 # Samples
 
@@ -63,4 +83,4 @@ DOCKER_BUILDKIT=1 docker build . --target bin --output bin/ --platform linux/amd
 # Notes
 
 * Project organisation with docker guide : https://www.docker.com/blog/containerize-your-go-developer-environment-part-1/
-* Forked and modified from https://github.com/joshhsoj1902/parse-env
+* Inspired by https://github.com/joshhsoj1902/parse-env
