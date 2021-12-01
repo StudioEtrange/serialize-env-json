@@ -25,8 +25,8 @@ jobs:
             run: make PLATFORM=darwin/amd64
           - name: rename darwin binary
             run: |
-              mv ./bin/serialize-env-json /bin/serialize-env-json_win64.exe
-          - name: Realase
+              mv ./bin/serialize-env-json ./bin/serialize-env-json_win64.exe
+          - name: publish binaries
             uses: softprops/action-gh-release@v1
             with:
               files: |
