@@ -51,7 +51,7 @@ serialize-env-json --filter "^P(A)TH" --clean --lower
 {"envs":[{"fullname":"PATH","name":"pth","value":"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"}]}
 ```
 
-# Build
+# Build binary
 
 ## using makefile
 
@@ -79,6 +79,16 @@ DOCKER_BUILDKIT=1 docker build . --target bin --output bin/
 # build for specific platforms
 DOCKER_BUILDKIT=1 docker build . --target bin --output bin/ --platform linux/amd64
 ```
+
+# Build docker image
+
+## using makefile
+
+```
+make VERSION=latest image-linux
+```
+
+
 
 # Notes
 
