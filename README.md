@@ -41,6 +41,15 @@ Parse environment variables and tweak and serialize them into JSON
     value : env var value
     ```
 
+## usage from docker image
+
+A docker image exist with serialize-env-json inside it.
+
+   ```
+   docker run -it studioetrange/serialize-env-json:0.0.2 --help
+   ```
+
+
 
 # Samples
 
