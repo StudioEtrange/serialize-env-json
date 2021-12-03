@@ -43,10 +43,11 @@ Parse environment variables and tweak and serialize them into JSON
 
 ## usage from docker image
 
-A docker image exist with serialize-env-json inside it.
+A docker image exists with `serialize-env-json` inside it. There is a version into dockerhub and github container regitry for each tag on this code repository.
 
    ```
    docker run -it studioetrange/serialize-env-json:0.0.2 --help
+   docker run -it ghcr.io/studioetrange/serialize-env-json:0.0.2 --help
    ```
 
 
