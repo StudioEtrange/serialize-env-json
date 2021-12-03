@@ -51,4 +51,5 @@ jobs:
               password: ${{ secrets.GITHUB_TOKEN }}
           - name: Push
             run: |
+              docker push ghcr.io/studioetrange/serialize-env-json:${{ steps.image_tag.outputs.tag }}
               docker push studioetrange/serialize-env-json:${{ steps.image_tag.outputs.tag }}
