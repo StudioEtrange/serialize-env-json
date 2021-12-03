@@ -24,4 +24,6 @@ COPY --from=build /out/serialize-env-json /serialize-env-json.exe
 FROM bin-${TARGETOS} as bin
 
 
-CMD ["/serialize-env-json"]
+ENTRYPOINT [ "/serialize-env-json" ]
+
+CMD [ "/serialize-env-json" ]
